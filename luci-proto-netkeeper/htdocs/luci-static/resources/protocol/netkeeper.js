@@ -133,4 +133,4 @@ return network.registerProtocol('netkeeper', {
 		o.placeholder = dev ? (dev.getMTU() || '1500') : '1500';
 		o.datatype    = 'max(9200)';
 	}
-});'use strict';
+});

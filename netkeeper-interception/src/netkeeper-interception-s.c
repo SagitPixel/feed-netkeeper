@@ -2,8 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <syslog.h>
+#include <stdint.h>
 #include <netinet/in.h>
 #include "pppd/pppd.h"
+#if defined(__STDC__) || defined(__GNUC__)
+#define __P(x) x
+#else
+#define __P(x) ()
+#endif
 typedef unsigned char byte;
 typedef unsigned short uint16_t;
 //TODO : change the version here

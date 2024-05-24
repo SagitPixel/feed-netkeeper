@@ -1,4 +1,7 @@
-# feed-netkeeper
+# feed-netkeeper(适用于LUCI2)
+
+## 注意事项
+本分支支持在OpenWrt主线上使用，适用于JS版本的LUCI2，如使用LUCI（Lua版本）的请切换分支到Lua版
 
 ## 本软件源包含四个软件
 ```

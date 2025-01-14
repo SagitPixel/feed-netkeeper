@@ -6,12 +6,17 @@
 #include "pppd/pppd.h"
 #include "md5.h"
 #define PREFIX0 '\r'
+#define PREFIX1 '\n'
+#define RADIUS "default_radius"
 typedef unsigned char byte;
 //TODO : change the version here
 char pppd_version[] = PPPOE_VER;
 
 static char saveuser[MAXNAMELEN] = {0};
 static char savepwd[MAXSECRETLEN] = {0};
+
+int (*pap_check_hook)(void) = NULL;
+int (*chap_check_hook)(void) = NULL;
 
 static void getPIN(byte *userName, byte *PIN)
 {
@@ -109,18 +114,19 @@ static int pap_modifyusername(char *user, char* passwd)
     getPIN(saveuser, PIN);
     strcpy(user, PIN);
     info("sxplugin : user  is <%s> ",user);
+    return 0;
 }
 
 static int check(){
     return 1;
 }
 
-void plugin_init(void)
+void plugin_init(const char* init_user, const char* init_passwd)
 {
     info("sxplugin : init");
-    strcpy(saveuser,user);
-    strcpy(savepwd,passwd);
-    pap_modifyusername(user, saveuser);
+    strcpy(saveuser, init_user);
+    strcpy(savepwd, init_passwd);
+    pap_modifyusername(init_user, saveuser);
     info("sxplugin : passwd loaded");
     pap_check_hook=check;
     chap_check_hook=check;

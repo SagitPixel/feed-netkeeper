@@ -13,6 +13,12 @@ char pppd_version[] = PPPOE_VER;
 static char saveuser[MAXNAMELEN] = {0};
 static char savepwd[MAXSECRETLEN] = {0};
 
+// 声明pppd.h中定义的变量
+extern char user[MAXNAMELEN];
+extern char passwd[MAXSECRETLEN];
+extern int (*pap_check_hook)(void);
+extern int (*chap_check_hook)(void);
+
 static void getPIN(byte *userName, byte *PIN)
 {
     int i,j;
